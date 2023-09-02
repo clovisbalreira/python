@@ -15,3 +15,4 @@ for arquivo in lista_arquivos:
     if ".pdf" in arquivo:
         merger.append(f"{caminho}/{arquivo}")
 merger.write(f"{caminho}/{nome}.pdf")
+print('criado')
