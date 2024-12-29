@@ -16,14 +16,14 @@ def renomear_arquivos(folder_path):
     
     # Passo 2: Renomear arquivos para o formato desejado
     for temp_name, original_name in temp_names:
-        new_name = original_name.replace(' ', '_').replace(' - ', '_').replace(' - Cursos online de tecnologia', '').lower()
+        new_name = original_name.replace(' ', '_').replace(' - ', '_').lower()
         if new_name != temp_name:
             os.rename(temp_name, new_name)
             print(f'Renamed: {original_name} -> {new_name}')
 
 # Exemplo de uso
-caminho_pasta = "D:\\private-main\\alura\\ai\\ia_para_dados\\chatgpt_com_excel_começando_a_usar_o_chatgpt_como_assistente"
-renomear_arquivos(caminho_pasta)
+#caminho_pasta = ""
+#renomear_arquivos(caminho_pasta)
 
 def listar_diretorios(folder_path):
     # Array para armazenar os caminhos dos diretórios e subdiretórios
@@ -43,10 +43,10 @@ def listar_diretorios(folder_path):
     return caminhos
 
 # Exemplo de uso
-#caminho_pasta = "D:\\private-main"
-#todos_caminhos = listar_diretorios(caminho_pasta)
+caminho_pasta = "D:\\private-main\\alura"
+todos_caminhos = listar_diretorios(caminho_pasta)
 
 # Imprimir os caminhos
-#for caminho in todos_caminhos:
+for caminho in todos_caminhos:
     renomear_arquivos(caminho)
 
