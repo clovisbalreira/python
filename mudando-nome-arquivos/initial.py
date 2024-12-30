@@ -43,7 +43,7 @@ def listar_diretorios(folder_path):
     return caminhos
 
 # Exemplo de uso
-caminho_pasta = "D:\\private-main\\alura"
+caminho_pasta = ""
 todos_caminhos = listar_diretorios(caminho_pasta)
 
 # Imprimir os caminhos
