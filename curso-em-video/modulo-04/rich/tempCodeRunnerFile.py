@@ -1,0 +1,1 @@
+caixa = Panel("Esse aqui é um painel de exemplo :+1:", title="Mensagem", style="red", width=35)
