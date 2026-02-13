@@ -6,21 +6,39 @@ from rich.panel import Panel
 """
 
 class Churrasco:
-    def __init__(self, titulo, quantidade):
-        self.titulo = titulo
-        self.quantidade = quantidade
-    
-    # Considere
+    # Atributos de classe
     # Consumo padrão: 400g por pessoa
     # Preço: R$ 82,40/kg
+    consumo_padrao:float = .400
+    preco_kg:float = 82.40
+    def __init__(self, titulo, quantidade):
+        # Atributos de estancia
+        self.titulo = titulo
+        self.participantes = quantidade
+    
+    def __str__(self):
+        return f"Esse é {self.titulo} com {self.participantes} pessoas"
+    
+    def calcular_quantidade_carne(self) -> float:
+        return self.participantes * Churrasco.consumo_padrao
+    
+    def calcular_custo_total(self) -> float:
+        return self.calcular_quantidade_carne() * self.__class__.preco_kg
+    
+    def calcular_custo_individual(self) -> float:
+        return self.calcular_custo_total() / self.participantes
+         
     def analisar(self):
-        carne = .4
-        preco = 82.40
-        totalCarne = self.quantidade * carne
-        precoTotal = totalCarne * preco
-        precoPessoa = precoTotal / self.quantidade
-        caixa = caixa = Panel(f"Analisando [green]{self.titulo}[/] com [blue]{self.quantidade}[/] convidados\nCada participante comerá {carne}Kg e cada carne Kg custa R$ {preco:,.2f}\nRecomendo [blue] comprar {totalCarne:,.3f}Kg[/] de carne\nO custo total será de [green]R$ {precoTotal:,.2f}[/]\nCada pessoa pagará [yellow]R$ {precoPessoa:,.2f}[/] para participar.", title=f"{self.titulo}", width=100)
-        print(caixa)
+        conteudo = f"Analisando [green]{self.titulo}[/] com [blue]{self.participantes} convidados[/]"
+        conteudo += f"\nCada participante comerá {Churrasco.consumo_padrao}Kg e cada Kg custa R$ {Churrasco.preco_kg:,.2f}"
+        conteudo += f"\nRecomendo [blue]comprar {self.calcular_quantidade_carne():,.3f}Kg[/] de carne"
+        conteudo += f"\nO custo total será de [green]R${self.calcular_custo_total():,.2f}[/]"
+        conteudo += f"\nCada pessoa pagará [yellow]R$ {self.calcular_custo_individual():,.2f}[/] para participar."
+        painel = Panel(conteudo, title=self.titulo)
+        print(painel)
+        
 
 c1 = Churrasco("Churras dos Amigos", 15)
 c1.analisar()
+c2 = Churrasco("Festa do fim de ano", 80)
+c2.analisar()

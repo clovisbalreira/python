@@ -4,19 +4,23 @@ from rich import print
     Crie tambem um metodo que permita ao funcionario se apresentar.
 """
 class Funcionario:
+    """ atributo de classe """
+    empresa = 'Curso em video'
     def __init__(self, nome, setor, cargo):
+        """ Atributo de estancia """
         self.nome = nome
         self.setor = setor
         self.cargo = cargo
-        self.empresa = 'Curso em video'
 
-    def apresentacao(self):
-        print(f":writing_hand:  Olá, sou [blue]{self.nome}[/blue] e sou {self.cargo} do setor de {self.setor} da empresa {self.empresa}.")
+    def apresentacao(self) -> str:
+        return f":handshake:  Olá, sou [blue]{self.nome}[/blue] e sou {self.cargo} do setor de {self.setor} da empresa {self.__class__.empresa}."
+    """Funcionario.empresa"""
     
 c1 = Funcionario("Maria", "Administração", "Diretora")
-c1.apresentacao()
+print(c1.apresentacao())
 
+Funcionario.empresa = 'Hostnet'
 c2 = Funcionario("Pedro", "TI", "Programador")
-c2.apresentacao()
+print(c2.apresentacao())
 
     
