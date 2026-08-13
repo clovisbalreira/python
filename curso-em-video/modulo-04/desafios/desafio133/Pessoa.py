@@ -1,16 +1,16 @@
 from abc import ABC
-from datetime import datetime
+from datetime import date, datetime
 
 
 class Pessoa(ABC):
-    def __init__(self, nome='', nascimento=0):
+    def __init__(self, nome:str, nasc:int):
         self._nome = nome
-        self._nascimento = nascimento
-        self.anoAtual = datetime.now().year
+        self._nascimento = None
+        self.nascimento = nasc
 
     @property
     def idade(self):
-        return self.anoAtual - self._nascimento
+        return date.today().year - self._nascimento
 
     @idade.setter
     def idade(self, valor):
@@ -21,8 +21,8 @@ class Pessoa(ABC):
         return self._nascimento
 
     @nascimento.setter
-    def nascimento(self, ano):
-        if ano > self.anoAtual or ano < 1990:
-            raise ValueError(f"Ano {ano} é inválido")
-        else:
+    def nascimento(self, ano: int):
+        if 1900 <= ano <= date.today().year:
             self._nascimento = ano
+        else:
+            raise ValueError(f"Ano {ano} é inválido")

@@ -1,10 +1,10 @@
 from Pessoa import Pessoa
 
 class Aluno(Pessoa):
-    def __init__(self, nome, nascimento, curso):
+    cursos_oficiais = ['ADM', 'ADS', 'ENG', 'CONT']
+    def __init__(self, nome:str, nascimento:int, curso:str):
         super().__init__(nome, nascimento)
         self._curso = curso
-        self.cursos_oficiais = ['ADM', 'ADS', 'ENG', 'CONT']
 
     @property
     def curso(self):
@@ -12,15 +12,15 @@ class Aluno(Pessoa):
     
     @curso.setter
     def curso(self, curso):
-        existe = False
-        for cursoOficial in self.cursos_oficiais:
-            if cursoOficial == curso:
-                existe = True
-
-        if existe:
+        if curso in self.cursos_oficiais:
             self._curso = curso
         else:
+            self._curso = None
             raise ValueError(f"O curso {curso} não esta na lista de cursos oficiais.")
 
     def add_curso(self, curso):
-        self.cursos_oficiais.append(curso)
+        curso = curso.strip().upper()
+        if 3 <= len(curso) <= 5:
+            self.cursos_oficiais.append(curso)
+        else:
+            raise ValueError(f"O nome do {curso} está fora do padrão para cursos!")
